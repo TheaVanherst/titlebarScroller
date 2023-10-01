@@ -70,25 +70,31 @@ upto you.
 
 ### Words of note
 
-"But I don't use a foundational like Svelte!"<br>
-"I don't want to use route changing!"
-
-Do not fear! For those of you who just want to have this functionality but don't know how to use it, 
+For those of you who just want to have this functionality but don't know how to use it, 
 The beauty of the setup is that all you *really* have to do is **call** the function.
 
 Here's a more raw-form example.
+
 ```html
-  <script>
-    import { titlebarScroller } from "{location route}/titlebar.js";
-    const startUp = () => {
-      titlebarScroller(`my website name`);
-    };
-    startUp();
-  </script>
+
+<script>
+  import {titlebarScroller, pageTitlebar} from "/lib/titlebar.js";
+  import {onMount} from "svelte";
+
+  onMount(() => {
+    titlebarScroller(`my website name`);
+  })
+
+</script>
+
+<svelte:head>
+  <title>{pageTitlebar}</title>
+</svelte:head>
 ```
-And this will initialize everything for you, no other fancy stuff required.
+And this will initialize everything for you.
 
-If you use something like Tumblr, copy and paste the `titlebarScroller` function and all the
-other functions it calls plug it at the top of your script.
+If you use something like Tumblr, it should be pretty easy to strip out the function too.
+Copy and paste the `titlebarScroller` function and all the other functions it calls, plug it at 
+the top of your page script. Then, remove all the writables and `$` at the start of all vars that
+do so, it *should* do the trick.
 
-## Enjoy!

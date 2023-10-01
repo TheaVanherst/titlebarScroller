@@ -21,8 +21,11 @@
             $pageTitlebar = loadingIco
 		: $pageTitlebar = "Mobile Website";
 
-    const redirect = async (n) => {
+    let pageLocation = "/";
+
+    const redirect = async (n, l) => {
         $pageName = n;
+        pageLocation = l;
         $transitioning = true;
     };
 
@@ -36,25 +39,62 @@
 	<title>{$pageTitlebar}</title>
 </svelte:head>
 
-<div class="navigation">
-	{#each navigation as button}
-		<a href={button.path} on:click={() => redirect(button.pagePreview)}>
-			{button.title}
-		</a>
-	{/each}
+<div class="navigationWrapper">
+	<div class="navigation">
+		{#each navigation as button}
+			<a href={button.path}
+			   class:located={pageLocation === button.path}
+			   on:click={() => redirect(button.pagePreview, button.path)}>
+				{button.title}
+			</a>
+		{/each}
+	</div>
+	<div class="path">
+		<h1> Current Route: {pageLocation} </h1>
+	</div>
 </div>
 
-<slot/>
+<div class="body">
+	<slot/>
+</div>
 
 <style>
+	.navigationWrapper {
+		height: 	100%;
+		padding: 	10px;
+
+		gap: 		10px;
+		display: 	flex;
+
+		background: 	black;
+		border-radius: 	10px;
+	}
 	.navigation {
-		gap: 10px;
-		display: flex;
+		gap: 		10px;
+		display: 	flex;
+	}
+	.path {
+		margin: auto 0;
 	}
 
 	a {
+		padding: 		10px;
+		background: 	#ffffff;
+		border-radius: 	5px;
+		color: 			black;
+	}
+	a:hover {
+		background: 	gray;
+	}
+	.located {
+		background: 	mediumpurple;
+		color: 			white;
+	}
+	.located:hover {
+		background: 	rebeccapurple;
+	}
+
+	.body {
 		padding: 10px;
-		background: greenyellow;
-		border-radius: 5px;
 	}
 </style>

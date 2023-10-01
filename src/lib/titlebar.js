@@ -27,7 +27,6 @@ const
 
         for (let i = 0; i < rawParse.length; i++) {
             let parsedUnicode = rawParse[i].charCodeAt(0).toString(16).toUpperCase();
-                console.log(parsedUnicode)
             if (parsedUnicode.length > 2 && unicodeLoop < 1){
                 returnArray[trueLength] = 2;
                 unicodeLoop++
@@ -44,8 +43,9 @@ const
         clearTimeout(timeout);
 
         headerArray = pageName;
-        headerString = pageName;
         offsetArray = unicodeArrFragmenter(`${headerArray}`);
+        headerArray = headerArray.split("");
+        headerString = headerArray.join("");
         pageTitlebar.set(headerString);
 
         timeout = setTimeout(() => {

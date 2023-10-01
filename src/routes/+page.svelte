@@ -1,4 +1,10 @@
+<script>
+    import { pageTitlebar } from "$lib/titlebar.js";
+</script>
 
-<h1>
-	Root
-</h1>
+<p>
+	Here's the current titlebar!
+</p>
+<p>
+	{$pageTitlebar}
+</p>
