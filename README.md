@@ -28,8 +28,12 @@ And here's what it looks like with the fix;
 ![Fixed Demo](fixedDemo.gif)
 
 ## How to use:
+To initialize and start the script, call the `titlebarScroller` function on page mount.
+
 On route change, set the writable `$pageName` to the new directory name, this changes the route name.
-When changing the route name, it'll reset the array offset and restart the loop.
+Depending on how you want to treat the scroller, you can either just live update it or reset it by 
+recalling the `titlebarScroller` function which will stop the ongoing function and reparse it.
+
 I would advise building a pre-designed object array with all the page names, url and button title for 
 the simplest back-end implementation.
 
@@ -65,7 +69,7 @@ if (parsedUnicode.length > 2){
 }
 ```
 
-The main functionality of the code is in `titlebarScroller.js`. However you call the functionality is 
+The main functionality of the code is in `titlebarScroller.js`. However, how you call the functionality is 
 upto you.
 
 ### Words of note
@@ -95,6 +99,6 @@ And this will initialize everything for you.
 
 If you use something like Tumblr, it should be pretty easy to strip out the function too.
 Copy and paste the `titlebarScroller` function and all the other functions it calls, plug it at 
-the top of your page script. Then, remove all the writables and `$` at the start of all vars that
+the top of your page script. Then, remove all the writable and `$` at the start of all vars that
 do so, it *should* do the trick.
 
