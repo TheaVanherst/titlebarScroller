@@ -54,6 +54,13 @@
 	</div>
 </div>
 
+<p>
+	Here's the current titlebar!
+</p>
+<p>
+	{$pageTitlebar}
+</p>
+
 <div class="body">
 	<slot/>
 </div>
